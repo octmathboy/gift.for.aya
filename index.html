@@ -79,6 +79,8 @@ body {
 }
 
 canvas#heartCanvas {
+    max-width: 100%;
+    max-height: 100%;
     filter: drop-shadow(0 0 25px rgba(255, 77, 109, 0.4));
 }
 
@@ -138,7 +140,7 @@ canvas#heartCanvas {
 <div class="aspect-wrapper">
     <div id="container">
         <div id="canvas-side">
-            <canvas id="heartCanvas" width="600" height="600"></canvas>
+            <canvas id="heartCanvas"></canvas>
         </div>
         <div id="text-side">
             <div id="typewriter"></div>
@@ -197,7 +199,7 @@ function resizeBG() {
     bgCanvas.height = innerHeight;
 }
 resizeBG();
-addEventListener("resize", resizeBG);
+window.addEventListener("resize", resizeBG);
 
 class Particle {
     constructor() {
@@ -259,7 +261,36 @@ function showFinal() {
 }
 
 /* ===== HEART ===== */
-const hCtx = document.getElementById("heartCanvas").getContext("2d");
+const heartCanvas = document.getElementById("heartCanvas");
+const hCtx = heartCanvas.getContext("2d");
+
+function resizeHeart() {
+    const size = Math.min(window.innerWidth, window.innerHeight) * 0.8;
+    heartCanvas.width = size;
+    heartCanvas.height = size;
+}
+resizeHeart();
+window.addEventListener("resize", resizeHeart);
+
+let count = 0;
+function bloomHeart() {
+    if (count > 1200) return;
+    let t = Math.random() * Math.PI * 2;
+    let r = Math.sqrt(Math.random());
+
+    const x = 16 * Math.pow(Math.sin(t), 3);
+    const y = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
+
+    const cx = heartCanvas.width / 2;
+    const cy = heartCanvas.height / 2;
+    const scale = (heartCanvas.width / 600) * 18 * r;
+
+    const colors = ["#ff4d6d", "#ff758f", "#ffb3c1", "#a2d2ff", "#ffffff"];
+    drawHeart(cx + x * scale, cy + y * scale, 3, colors[Math.floor(Math.random() * colors.length)]);
+
+    count++;
+    setTimeout(bloomHeart, 5);
+}
 
 function drawHeart(x, y, s, c) {
     hCtx.fillStyle = c;
@@ -270,18 +301,6 @@ function drawHeart(x, y, s, c) {
     hCtx.bezierCurveTo(x, y + s * 1.5, x + s, y + s, x + s, y);
     hCtx.bezierCurveTo(x + s, y - s, x, y - s, x, y);
     hCtx.fill();
-}
-
-let count = 0;
-function bloomHeart() {
-    if (count > 1200) return;
-    let t = Math.random() * Math.PI * 2;
-    let r = Math.sqrt(Math.random());
-    let x = 16 * Math.pow(Math.sin(t), 3);
-    let y = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
-    drawHeart(300 + x * 18 * r, 300 + y * 18 * r, 3, "#ff758f");
-    count++;
-    setTimeout(bloomHeart, 5);
 }
 </script>
 
