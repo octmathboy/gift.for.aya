@@ -3,141 +3,142 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For Aya</title>
+<title>For Aya - A Journey of Love</title>
 
+<!-- Google Fonts -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-body {
-    margin: 0;
-    background-color: #050505;
-    color: #fff;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Montserrat', sans-serif;
-    height: 100vh;
-}
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #050505;
+        color: #fff;
+        overflow: hidden;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Montserrat', sans-serif;
+    }
 
-/* ===== 1:1 Aspect Ratio Wrapper ===== */
-.aspect-wrapper {
-    position: relative;
-    width: 100vmin;
-    height: 100vmin;
-    max-width: 100vw;
-    max-height: 100vh;
-    margin: auto;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+    /* ===== 1:1 Aspect Ratio ===== */
+    .aspect-wrapper {
+        position: relative;
+        width: 100vmin;
+        height: 100vmin;
+        max-width: 100vw;
+        max-height: 100vh;
+        margin: auto;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-#bgCanvas {
-    position: fixed;
-    inset: 0;
-    z-index: 1;
-}
+    #bgCanvas {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+    }
 
-#overlay {
-    position: fixed;
-    inset: 0;
-    background: #000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 100;
-    cursor: pointer;
-}
+    #overlay {
+        position: fixed;
+        inset: 0;
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 100;
+        cursor: pointer;
+    }
 
-#overlay h2 {
-    font-weight: 300;
-    letter-spacing: 6px;
-    color: #ffb7c5;
-    border: 1px solid #ffb7c5;
-    padding: 20px 40px;
-    transition: 0.8s;
-}
+    #overlay h2 {
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 300;
+        letter-spacing: 6px;
+        color: #ffb7c5;
+        border: 1px solid #ffb7c5;
+        padding: 20px 40px;
+        transition: 0.8s;
+    }
 
-#overlay h2:hover {
-    background: #ffb7c5;
-    color: #000;
-    box-shadow: 0 0 20px #ffb7c5;
-}
+    #overlay h2:hover {
+        background: #ffb7c5;
+        color: #000;
+        box-shadow: 0 0 20px #ffb7c5;
+    }
 
-#container {
-    display: none;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    z-index: 10;
-}
+    #container {
+        display: none;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        z-index: 10;
+    }
 
-#canvas-side {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0.35;
-}
+    #canvas-side {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.35;
+        z-index: 10;
+    }
 
-canvas#heartCanvas {
-    max-width: 100%;
-    max-height: 100%;
-    filter: drop-shadow(0 0 25px rgba(255, 77, 109, 0.4));
-}
+    canvas#heartCanvas {
+        max-width: 100%;
+        max-height: 100%;
+        filter: drop-shadow(0 0 25px rgba(255, 77, 109, 0.4));
+    }
 
-#text-side {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    line-height: 1.7;
-    color: #ffdae0;
-    text-shadow: 0 0 18px rgba(255, 117, 143, 0.8);
-    opacity: 0;
-    transition: opacity 1.5s;
-    padding: 30px;
-}
+    #text-side {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-family: 'Playfair Display', serif;
+        font-size: 2rem;
+        line-height: 1.7;
+        color: #ffdae0;
+        text-shadow: 0 0 18px rgba(255, 117, 143, 0.8);
+        opacity: 0;
+        transition: opacity 1.5s ease-in-out;
+        z-index: 30;
+        padding: 30px;
+    }
 
-#final-message {
-    position: fixed;
-    inset: 0;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    opacity: 0;
-    transition: opacity 4s;
-    z-index: 50;
-    text-align: center;
-    font-family: 'Playfair Display', serif;
-}
+    #final-message {
+        position: fixed;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        opacity: 0;
+        transition: opacity 4s;
+        z-index: 50;
+        text-align: center;
+        font-family: 'Playfair Display', serif;
+    }
 
-#final-message h1 {
-    font-size: 3.8rem;
-    color: #ffb7c5;
-    text-shadow: 0 0 35px #ffb7c5;
-    animation: pulse 2s infinite alternate;
-}
+    #final-message h1 {
+        font-size: 3.8rem;
+        font-weight: 600;
+        color: #ffb7c5;
+        text-shadow: 0 0 35px #ffb7c5;
+        margin: 0;
+    }
 
-#final-message p {
-    font-size: 2rem;
-    margin-top: 14px;
-    color: #fff;
-    animation: pulse 2s infinite alternate;
-}
-
-@keyframes pulse {
-    from { text-shadow: 0 0 35px #ffb7c5; color: #ffb7c5; }
-    to { text-shadow: 0 0 60px #ffdae0; color: #ffdae0; }
-}
+    #final-message p {
+        font-size: 2rem;
+        margin-top: 14px;
+        color: #a2d2ff;
+        font-weight: 400;
+    }
 </style>
 </head>
 
@@ -146,7 +147,7 @@ canvas#heartCanvas {
 <canvas id="bgCanvas"></canvas>
 
 <div id="overlay" onclick="startExperience()">
-    <h2>OPEN</h2>
+    <h2>OPEN GIFT</h2>
 </div>
 
 <div class="aspect-wrapper">
@@ -161,8 +162,8 @@ canvas#heartCanvas {
 </div>
 
 <div id="final-message">
-    <h1>Aya 🤍</h1>
-    <p>I love you</p>
+    <h1>Happy New Year Aya</h1>
+    <p>I love you ❤️</p>
 </div>
 
 <audio id="bgMusic" loop>
@@ -170,28 +171,18 @@ canvas#heartCanvas {
 </audio>
 
 <script>
-/* ===== TEXT ===== */
+/* ===== Text ===== */
 const textLines = [
-  "Some feelings arrive quietly ✨",
-  "And suddenly everything feels lighter and calmer 🤍",
-  "You bring peace without even trying 🌿",
-  "And there is comfort in thinking of you 💭",
-  "Smiles feel easier these days 🌸",
-  "And little moments feel so much more meaningful ✨",
-  "The heart notices what the mind can’t explain 🤍",
-  "So there is warmth in your presence 🌙",
-  "Some people make days brighter just by existing ☀️",
-  "And you are one of those people 🌷",
-  "Aya 🤍",
-  "You make things feel softer and gentler 🌱",
-  "So happiness feels closer when you’re around ✨",
-  "And my thoughts often return to you 💭",
-  "There is something truly special about you 🌸",
-  "And you bring peace to my heart 🌙",
-  "Some feelings don’t need big words 🤍",
-  "They just feel right, so simple and true ✨",
-  "You really make me happy 🌷",
-  "And I love you Aya 🤍"
+    "Hey Aya 🌷",
+    "I built this little universe for you...",
+    "To the most beautiful soul I've ever known ✨",
+    "In your eyes, I found my favorite starlight 🌟",
+    "You are the joy that fills my days ❤️",
+    "May God bless your path and protect your heart ✨",
+    "May your year be as radiant as your smile 🌷",
+    "You are so special to me, today and always...",
+    "I love you more than words can say ❤️",
+    "Happy New Year 🎆"
 ];
 
 const typewriter = document.getElementById("typewriter");
@@ -201,7 +192,7 @@ const overlay = document.getElementById("overlay");
 const finalMsg = document.getElementById("final-message");
 const bgMusic = document.getElementById("bgMusic");
 
-/* ===== BACKGROUND PARTICLES ===== */
+/* ===== Background ===== */
 const bgCanvas = document.getElementById("bgCanvas");
 const bgCtx = bgCanvas.getContext("2d");
 let particles = [];
@@ -210,8 +201,8 @@ function resizeBG() {
     bgCanvas.width = innerWidth;
     bgCanvas.height = innerHeight;
 }
-resizeBG();
 window.addEventListener("resize", resizeBG);
+resizeBG();
 
 class Particle {
     constructor() {
@@ -219,6 +210,7 @@ class Particle {
         this.y = Math.random() * bgCanvas.height;
         this.size = Math.random() * 2 + 1;
         this.speed = Math.random() * 0.4 + 0.1;
+        this.color = ["#fff", "#ffafcc", "#a2d2ff"][Math.floor(Math.random() * 3)];
     }
     update() {
         this.y += this.speed;
@@ -226,7 +218,7 @@ class Particle {
     }
     draw() {
         bgCtx.globalAlpha = 0.5;
-        bgCtx.fillStyle = "#ffafcc";
+        bgCtx.fillStyle = this.color;
         bgCtx.beginPath();
         bgCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         bgCtx.fill();
@@ -239,7 +231,7 @@ function animateBG() {
     requestAnimationFrame(animateBG);
 }
 
-/* ===== EXPERIENCE ===== */
+/* ===== Experience ===== */
 async function startExperience() {
     overlay.style.display = "none";
     container.style.display = "block";
@@ -272,38 +264,12 @@ function showFinal() {
     }, 2000);
 }
 
-/* ===== HEART ===== */
+/* ===== Heart (1:1) ===== */
 const heartCanvas = document.getElementById("heartCanvas");
 const hCtx = heartCanvas.getContext("2d");
 
-function resizeHeart() {
-    const square = document.querySelector('.aspect-wrapper');
-    const size = square.clientWidth;
-    heartCanvas.width = size;
-    heartCanvas.height = size;
-}
-resizeHeart();
-window.addEventListener("resize", resizeHeart);
-
-let count = 0;
-function bloomHeart() {
-    if (count > 1200) return;
-    let t = Math.random() * Math.PI * 2;
-    let r = Math.sqrt(Math.random());
-
-    const x = 16 * Math.pow(Math.sin(t), 3);
-    const y = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
-
-    const cx = heartCanvas.width / 2;
-    const cy = heartCanvas.height / 2;
-    const scale = (heartCanvas.width / 600) * 18 * r;
-
-    const colors = ["#ff4d6d", "#ff758f", "#ffb3c1", "#a2d2ff", "#ffffff"];
-    drawHeart(cx + x * scale, cy + y * scale, 3, colors[Math.floor(Math.random() * colors.length)]);
-
-    count++;
-    setTimeout(bloomHeart, 5);
-}
+heartCanvas.width = 600;
+heartCanvas.height = 600;
 
 function drawHeart(x, y, s, c) {
     hCtx.fillStyle = c;
@@ -314,6 +280,26 @@ function drawHeart(x, y, s, c) {
     hCtx.bezierCurveTo(x, y + s * 1.5, x + s, y + s, x + s, y);
     hCtx.bezierCurveTo(x + s, y - s, x, y - s, x, y);
     hCtx.fill();
+}
+
+let count = 0;
+function bloomHeart() {
+    if (count > 1200) return;
+
+    let t = Math.random() * Math.PI * 2;
+    let r = Math.sqrt(Math.random());
+    let x = 16 * Math.pow(Math.sin(t), 3);
+    let y = -(13 * Math.cos(t) - 5 * Math.cos(2*t) - 2 * Math.cos(3*t) - Math.cos(4*t));
+
+    const cx = 300;
+    const cy = 300;
+    const scale = 18 * r;
+
+    const colors = ["#ff4d6d", "#ff758f", "#ffb3c1", "#a2d2ff", "#ffffff"];
+    drawHeart(cx + x * scale, cy + y * scale, 3, colors[Math.floor(Math.random() * colors.length)]);
+
+    count++;
+    setTimeout(bloomHeart, 5);
 }
 </script>
 
